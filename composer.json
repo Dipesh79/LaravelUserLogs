@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dipesh79\\LaravelUserLogs\\LaravelLogServiceProvider"
+                "Dipesh79\\LaravelUserLogs\\LaravelUserLogServiceProvider"
             ]
         }
     }

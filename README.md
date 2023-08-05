@@ -59,6 +59,11 @@ $user = \App\Models\User::create(
     );
 ```
 
+Access User Logs
+```
+$logs = \Dipesh79\LaravelUserLogs\Models\Log::get();
+```
+
 
 ## License
 

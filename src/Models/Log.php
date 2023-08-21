@@ -2,7 +2,7 @@
 
 namespace Dipesh79\LaravelUserLogs\Models;
 
-class Log extends Model
+class Log extends \Illuminate\Database\Eloquent\Model
 {
     /**
      * This property defines the fields that are not mass assignable.

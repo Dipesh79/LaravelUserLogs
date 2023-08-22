@@ -6,23 +6,23 @@ This Laravel package allows you to store user logs.
 
 ## Usage/Examples
 ### Install Using Composer
-```javascript
+```bash
 composer require dipesh79/laravel-user-logs
 ```
 
 ### Publish Vendor File For Migration
-```
+```bash
 php artisan vendor:publish --provider="Dipesh79\LaravelUserLogs\LaravelLogServiceProvider"
 ```
 or 
-```
+```bash
 php artisan vendor:publish
 ```
 And publish "Dipesh79\LaravelUserLogs\LaravelLogServiceProvider"
 
 Run Migration
 
-```
+```bash
 php artisan migrate
 ```
 
@@ -30,7 +30,7 @@ php artisan migrate
 ## Model
 Use ```HasLog``` Trait in your model
 
-```
+```php
 <?php
 
 namespace App\Models;
@@ -43,24 +43,21 @@ class User extends Authenticatable
 ```
 Store logs in database
 
-```
-$user = \App\Models\User::create(
-        [
+```php
+$user = \App\Models\User::create([
           ...
-        ]
-    );
-    $user->logs()->create(
-        [
-            'action' => 'Create', //Create,Update & Delete
-            'ip_address' => request()->ip(),
-            'device' => request()->userAgent(),
-            'user_id' => auth()->user()->id
-        ]
-    );
+        ]);
+        
+$user->logs()->create([
+        'action' => 'Create', //Create,Update & Delete
+        'ip_address' => request()->ip(),
+        'device' => request()->userAgent(),
+        'user_id' => auth()->user()->id
+    ]);
 ```
 
 Access User Logs
-```
+```php
 $logs = \Dipesh79\LaravelUserLogs\Models\Log::get();
 ```
 

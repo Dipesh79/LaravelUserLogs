@@ -16,10 +16,21 @@ trait HasLog
         return $this->morphMany(Log::class, 'loggable');
     }
 
+    /**
+     * This method of trait defines the boot method of the model.
+     *
+     * @return void
+     */
     public static function boot()
     {
+        /**
+         * The parent boot method is called to ensure that the parent boot method is not overridden.
+         */
         parent::boot();
 
+        /**
+         * The created event for the model is listened to and the logs are created.
+         */
         static::created(function ($model) {
             $model->logs()->create([
                 'action' => 'Create',
@@ -29,6 +40,9 @@ trait HasLog
             ]);
         });
 
+        /**
+         * The updated event for the model is listened to and the logs are created.
+         */
         static::updated(function ($model) {
             $model->logs()->create([
                 'action' => 'Update',
@@ -38,6 +52,9 @@ trait HasLog
             ]);
         });
 
+        /**
+         * The deleted event for the model is listened to and the logs are created.
+         */
         static::deleted(function ($model) {
             $model->logs()->create([
                 'action' => 'Delete',

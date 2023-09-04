@@ -199,6 +199,8 @@
                     <th>Model Id</th>
                     <th>Action</th>
                     <th>User</th>
+                    <th>IP Address</th>
+                    <th>Device</th>
                     <th>Action At</th>
                 </tr>
                 </thead>
@@ -213,6 +215,8 @@
                         <td class="text">{{$log->loggable_id}}</td>
                         <td class="date">{{$log->action}}</td>
                         <td class="date">{{$log->user->name}}</td>
+                        <td class="date">{{$log->ip_address}}</td>
+                        <td class="date">{{$log->device}}</td>
                         <td class="text">{{$log->created_at->diffForHumans()}}</td>
                     </tr>
                 @endforeach

@@ -12,10 +12,7 @@ composer require dipesh79/laravel-user-logs
 ```
 
 ### Publish Vendor File For Migration
-```bash
-php artisan vendor:publish --provider="Dipesh79\LaravelUserLogs\LaravelLogServiceProvider"
-```
-or 
+
 ```bash
 php artisan vendor:publish
 ```
@@ -43,25 +40,6 @@ class User extends Authenticatable
     use HasLog;
 ```
 
-### Store logs in database
-
-You can call the `logs()->create([...])` method on your model to store the logs in the database.
-Follow the example below:
-
-```php
-$user = \App\Models\User::create([
-          ...
-        ]);
-        
-$user->logs()->create([
-        'action' => 'Create', //Create,Update & Delete
-        'ip_address' => request()->ip(),
-        'device' => request()->userAgent(),
-        'user_id' => auth()->user()->id
-    ]);
-```
-## No need to add function to store logs
-
 ### Automated Static events for logs
 
 The `Created`, `Updated`, `Deleted` events are fired when a model is created, updated, or deleted, respectively.
@@ -72,6 +50,15 @@ You don't have to do anything else, this package will automatically store the lo
 ```php
 $logs = \Dipesh79\LaravelUserLogs\Models\Log::get();
 ```
+
+### V 1.4 update
+
+View User Logs
+```
+Route::get('/logs', [Dipesh79\LaravelUserLogs\Controllers\UserLogController::class, 'index'])->name('logs');
+```
+Don't forget to guard this route with your custom or pre-defined middleware
+
 
 ## License
 

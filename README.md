@@ -60,16 +60,18 @@ $user->logs()->create([
         'user_id' => auth()->user()->id
     ]);
 ```
-
-### Access User Logs
-```php
-$logs = \Dipesh79\LaravelUserLogs\Models\Log::get();
-```
+## No need to add function to store logs
 
 ### Automated Static events for logs
 
 The `Created`, `Updated`, `Deleted` events are fired when a model is created, updated, or deleted, respectively.
 You don't have to do anything else, this package will automatically store the logs in the database.
+
+
+### Access User Logs
+```php
+$logs = \Dipesh79\LaravelUserLogs\Models\Log::get();
+```
 
 ## License
 

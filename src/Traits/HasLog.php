@@ -31,38 +31,47 @@ trait HasLog
         /**
          * The created event for the model is listened to and the logs are created.
          */
-        static::created(function ($model) {
-            $model->logs()->create([
-                'action' => 'Create',
-                'ip_address' => request()->ip(),
-                'device' => request()->userAgent(),
-                'user_id' => auth()->user()->id
-            ]);
-        });
+        if(auth()->user())
+        {   
+            static::created(function ($model) {
+                $model->logs()->create([
+                    'action' => 'Create',
+                    'ip_address' => request()->ip(),
+                    'device' => request()->userAgent(),
+                    'user_id' => auth()->user()->id
+                ]);
+            });
+        }
 
         /**
          * The updated event for the model is listened to and the logs are created.
          */
-        static::updated(function ($model) {
-            $model->logs()->create([
-                'action' => 'Update',
-                'ip_address' => request()->ip(),
-                'device' => request()->userAgent(),
-                'user_id' => auth()->user()->id
-            ]);
-        });
+        if(auth()->user())
+        { 
+            static::updated(function ($model) {
+                $model->logs()->create([
+                    'action' => 'Update',
+                    'ip_address' => request()->ip(),
+                    'device' => request()->userAgent(),
+                    'user_id' => auth()->user()->id
+                ]);
+            });
+        }
 
         /**
          * The deleted event for the model is listened to and the logs are created.
          */
-        static::deleted(function ($model) {
-            $model->logs()->create([
-                'action' => 'Delete',
-                'ip_address' => request()->ip(),
-                'device' => request()->userAgent(),
-                'user_id' => auth()->user()->id
-            ]);
-        });
+        if(auth()->user())
+        { 
+            static::deleted(function ($model) {
+                $model->logs()->create([
+                    'action' => 'Delete',
+                    'ip_address' => request()->ip(),
+                    'device' => request()->userAgent(),
+                    'user_id' => auth()->user()->id
+                ]);
+            });
+        }
 
     }
 }

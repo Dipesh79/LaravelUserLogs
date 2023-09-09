@@ -1,12 +1,12 @@
-
 # LaravelUserLogs
 
 This Laravel package allows you to store user logs.
 This package automatically stores the logs when a model is created, updated, or deleted.
 
-
 ## Usage/Examples
+
 ### Install Using Composer
+
 ```bash
 composer require dipesh79/laravel-user-logs
 ```
@@ -16,6 +16,7 @@ composer require dipesh79/laravel-user-logs
 ```bash
 php artisan vendor:publish
 ```
+
 And publish `Dipesh79\LaravelUserLogs\LaravelLogServiceProvider`
 
 ### Run Migration
@@ -24,8 +25,8 @@ And publish `Dipesh79\LaravelUserLogs\LaravelLogServiceProvider`
 php artisan migrate
 ```
 
-
 ## Model
+
 Use ```HasLog``` Trait in your model. This will create a relation between your model and the `Log` model.
 
 ```php
@@ -58,6 +59,53 @@ View User Logs
 Route::get('/logs', [Dipesh79\LaravelUserLogs\Controllers\UserLogController::class, 'index'])->name('logs');
 ```
 Don't forget to guard this route with your custom or pre-defined middleware
+
+### V 1.4.1 update
+
+## Config File
+
+```php
+    <?php
+
+return [
+    /**
+     * Log Viewer Theme | Options: bootstrap.
+     */
+
+    'theme' => 'bootstrap',
+
+    /**
+     * Pagination Count.
+     */
+    'pagination' => 10,
+
+    /**
+     * User Identifier from users table.
+     */
+    'user_identifier' => 'name',
+
+    /**
+     * Return page from log view page.
+     */
+    'return_page' => [
+        /**
+         * Route Type | Options: route, url.
+         */
+        'route_type' => 'url',
+        /**
+         * Route Name or URL.
+         */
+        'url' => '/'
+    ]
+
+];
+```
+
+Chose theme for user log viewer. Currently only bootstrap theme is available.
+You can change the pagination count for user log viewer.
+You can change the user identifier from users table. By default it is `name`.
+You can change the return page from user log viewer. By default it is `/`. You can change it to your custom route or
+url.
 
 
 ## License

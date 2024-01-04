@@ -16,7 +16,7 @@ class CreateUserActivityLogsTable extends Migration
             $table->enum('action', ['Create', 'Update', 'Delete']);
             $table->morphs('loggable');
             $table->string('ip_address');
-            $table->string('device');
+            $table->longText('device');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

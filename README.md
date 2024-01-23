@@ -111,6 +111,17 @@ You can change the user identifier from users table. By default it is `name`.
 You can change the return page from user log viewer. By default it is `/`. You can change it to your custom route or
 url.
 
+### V 1.5.0  Update
+Now updated values will be stored in database and view them in user log viewer.
+
+Get Access to Old Values And Updated Values in your model
+```php
+    $user_log = \Dipesh79\LaravelUserLogs\Models\Log::find(1);
+    $old_values = $user_log->old_data;
+    $updated_values = $user_log->changed_values;
+
+```
+
 
 ## License
 

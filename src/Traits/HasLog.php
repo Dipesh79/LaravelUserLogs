@@ -11,11 +11,6 @@ trait HasLog
         'log' => 'log',
     ];
 
-    public function logs(): MorphMany
-    {
-        return $this->morphMany(Log::class, 'loggable');
-    }
-
     /**
      * This method of trait defines the boot method of the model.
      *
@@ -31,8 +26,7 @@ trait HasLog
         /**
          * The created event for the model is listened to and the logs are created.
          */
-        if(auth()->user())
-        {   
+        if (auth()->user()) {
             static::created(function ($model) {
                 $model->logs()->create([
                     'action' => 'Create',
@@ -46,14 +40,15 @@ trait HasLog
         /**
          * The updated event for the model is listened to and the logs are created.
          */
-        if(auth()->user())
-        { 
+        if (auth()->user()) {
             static::updated(function ($model) {
                 $model->logs()->create([
                     'action' => 'Update',
                     'ip_address' => request()->ip(),
                     'device' => request()->userAgent(),
-                    'user_id' => auth()->user()->id
+                    'user_id' => auth()->user()->id,
+                    'old_values' => json_encode($model->getRawOriginal()),
+                    'changed_values' => json_encode($model->getChanges())
                 ]);
             });
         }
@@ -61,8 +56,7 @@ trait HasLog
         /**
          * The deleted event for the model is listened to and the logs are created.
          */
-        if(auth()->user())
-        { 
+        if (auth()->user()) {
             static::deleted(function ($model) {
                 $model->logs()->create([
                     'action' => 'Delete',
@@ -73,5 +67,10 @@ trait HasLog
             });
         }
 
+    }
+
+    public function logs(): MorphMany
+    {
+        return $this->morphMany(Log::class, 'loggable');
     }
 }

@@ -33,6 +33,12 @@ class LaravelUserLogServiceProvider extends ServiceProvider
                     __DIR__ . '/../databases/migrations/create_logs_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_user_activity_logs_table.php'),
                 ], 'migrations');
             }
+            else
+            {
+                $this->publishes([
+                    __DIR__ . '/../databases/migrations/update_logs_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_add_values_to_user_activity_logs_table.php'),
+                ], 'migrations');
+            }
             $this->publishes([
                 __DIR__.'/css/bootstrap.css' => public_path('css/logs/bootstrap.css'),
             ], 'public');

@@ -18,6 +18,8 @@ class CreateUserActivityLogTable extends Migration
             $table->string('ip_address');
             $table->string('device');
             $table->foreignId('user_id')->constrained('users');
+            $table->json('old_data')->nullable();
+            $table->json('changed_values')->nullable();
             $table->timestamps();
         });
     }

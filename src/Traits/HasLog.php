@@ -47,7 +47,7 @@ trait HasLog
                     'ip_address' => request()->ip(),
                     'device' => request()->userAgent(),
                     'user_id' => auth()->user()->id,
-                    'old_values' => json_encode($model->getRawOriginal()),
+                    'old_data' => json_encode($model->getRawOriginal()),
                     'changed_values' => json_encode($model->getChanges())
                 ]);
             });

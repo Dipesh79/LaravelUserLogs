@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserActivityLogTable extends Migration
+class CreateUserActivityLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateUserActivityLogTable extends Migration
             $table->enum('action', ['Create', 'Update', 'Delete']);
             $table->morphs('loggable');
             $table->string('ip_address');
-            $table->string('device');
+            $table->longText('device');
             $table->foreignId('user_id')->constrained('users');
             $table->json('old_data')->nullable();
             $table->json('changed_values')->nullable();

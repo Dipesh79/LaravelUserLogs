@@ -1,5 +1,9 @@
 # LaravelUserLogs
 
+[![Latest Stable Version](http://poser.pugx.org/dipesh79/laravel-user-logs/v)](https://packagist.org/packages/dipesh79/laravel-user-logs)
+[![Total Downloads](http://poser.pugx.org/dipesh79/laravel-user-logs/downloads)](https://packagist.org/packages/dipesh79/laravel-user-logs)
+[![License](http://poser.pugx.org/dipesh79/laravel-user-logs/license)](https://packagist.org/packages/dipesh79/laravel-user-logs)
+
 This Laravel package allows you to store user logs.
 This package automatically stores the logs when a model is created, updated, or deleted.
 

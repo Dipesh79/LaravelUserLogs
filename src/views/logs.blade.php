@@ -29,6 +29,8 @@
                     <th>User</th>
                     <th>IP Address</th>
                     <th>Device</th>
+                    <th>Old Value</th>
+                    <th>New Value</th>
                     <th>Action At</th>
                 </tr>
                 </thead>
@@ -45,6 +47,8 @@
                         <td class="text">{{$log->user[config('user-logs.user_identifier')]}}</td>
                         <td class="text">{{$log->ip_address}}</td>
                         <td class="text">{{$log->device}}</td>
+                        <td class="text">{{$log->old_data}}</td>
+                        <td class="text">{{$log->changed_values}}</td>
                         <td class="text">{{$log->created_at->format('Y-m-d h:i a')}}</td>
                     </tr>
                 @endforeach

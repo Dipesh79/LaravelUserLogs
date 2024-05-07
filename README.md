@@ -1,3 +1,5 @@
+![](https://banners.beyondco.de/LaravelUserLogs.png?theme=light&packageManager=composer+require&packageName=dipesh79%2Flaravel-user-logs&pattern=cage&style=style_1&description=Laravel+User+Logs+-+A+Simple+laravel+package+to+keep+the+log+of+users+activity&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
+
 # LaravelUserLogs
 
 [![Latest Stable Version](http://poser.pugx.org/dipesh79/laravel-user-logs/v)](https://packagist.org/packages/dipesh79/laravel-user-logs)

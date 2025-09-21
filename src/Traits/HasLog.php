@@ -26,22 +26,22 @@ trait HasLog
         /**
          * The created event for the model is listened to and the logs are created.
          */
-        if (auth()->user()) {
-            static::created(function ($model) {
+        static::created(function ($model) {
+            if (auth()->check()) {
                 $model->logs()->create([
                     'action' => 'Create',
                     'ip_address' => request()->ip(),
                     'device' => request()->userAgent(),
                     'user_id' => auth()->user()->id
                 ]);
-            });
-        }
+            }
+        });
 
         /**
          * The updated event for the model is listened to and the logs are created.
          */
-        if (auth()->user()) {
-            static::updated(function ($model) {
+        static::updated(function ($model) {
+            if (auth()->check()) {
                 $model->logs()->create([
                     'action' => 'Update',
                     'ip_address' => request()->ip(),
@@ -50,22 +50,23 @@ trait HasLog
                     'old_data' => json_encode($model->getRawOriginal()),
                     'changed_values' => json_encode($model->getChanges())
                 ]);
-            });
-        }
+            }
+        });
 
         /**
          * The deleted event for the model is listened to and the logs are created.
          */
-        if (auth()->user()) {
-            static::deleted(function ($model) {
+        static::deleted(function ($model) {
+            if (auth()->check()) {
                 $model->logs()->create([
                     'action' => 'Delete',
                     'ip_address' => request()->ip(),
                     'device' => request()->userAgent(),
                     'user_id' => auth()->user()->id
                 ]);
-            });
-        }
+            }
+        });
+
 
     }
 

@@ -42,13 +42,18 @@ trait HasLog
          */
         static::updated(function ($model) {
             if (auth()->check()) {
+                $excluded = $model->hidden ?? [];
+
+                $old = collect($model->getRawOriginal())->except($excluded)->toArray();
+                $changes = collect($model->getChanges())->except($excluded)->toArray();
+
                 $model->logs()->create([
                     'action' => 'Update',
                     'ip_address' => request()->ip(),
                     'device' => request()->userAgent(),
                     'user_id' => auth()->user()->id,
-                    'old_data' => json_encode($model->getRawOriginal()),
-                    'changed_values' => json_encode($model->getChanges())
+                    'old_data' => json_encode($old),
+                    'changed_values' => json_encode($changes),
                 ]);
             }
         });
